@@ -1,9 +1,18 @@
 import os
 import re
+from datetime import datetime
 
 from flask import Flask, redirect, render_template, request, session, url_for
 
-from database.db import create_user, get_db, get_user_by_email, init_db, seed_db, verify_user
+from database.db import (
+    create_user,
+    get_db,
+    get_user_by_email,
+    get_user_by_id,
+    init_db,
+    seed_db,
+    verify_user,
+)
 
 EMAIL_RE = re.compile(r"^[^@\s]+@[^@\s]+\.[^@\s]+$")
 
@@ -71,7 +80,7 @@ def login():
         return render_template("login.html", error=error, email=email), 400
 
     session["user_id"] = user["id"]
-    return redirect(url_for("landing"))
+    return redirect(url_for("profile"))
 
 
 @app.route("/terms")
@@ -96,7 +105,46 @@ def logout():
 
 @app.route("/profile")
 def profile():
-    return "Profile page — coming in Step 4"
+    if not session.get("user_id"):
+        return redirect(url_for("login"))
+
+    db_user = get_user_by_id(session["user_id"])
+    if db_user is None:
+        session.pop("user_id", None)
+        return redirect(url_for("login"))
+
+    member_since = datetime.strptime(db_user["created_at"], "%Y-%m-%d %H:%M:%S").strftime("%B %Y")
+    user = {
+        "name": db_user["name"],
+        "email": db_user["email"],
+        "member_since": member_since,
+    }
+    stats = {
+        "total_spent": "₹6,220",
+        "transaction_count": 8,
+        "top_category": "Shopping",
+    }
+    transactions = [
+        {"date": "2026-01-18", "description": "Miscellaneous", "category": "Other", "amount": "₹300"},
+        {"date": "2026-01-15", "description": "Dinner with friends", "category": "Food", "amount": "₹450"},
+        {"date": "2026-01-12", "description": "Movie tickets", "category": "Entertainment", "amount": "₹600"},
+        {"date": "2026-01-10", "description": "Pharmacy", "category": "Health", "amount": "₹800"},
+        {"date": "2026-01-08", "description": "New shoes", "category": "Shopping", "amount": "₹2,200"},
+    ]
+    categories = [
+        {"name": "Shopping", "amount": "₹2,200", "percent": 78},
+        {"name": "Bills", "amount": "₹1,500", "percent": 58},
+        {"name": "Health", "amount": "₹800", "percent": 42},
+        {"name": "Entertainment", "amount": "₹600", "percent": 32},
+    ]
+
+    return render_template(
+        "profile.html",
+        user=user,
+        stats=stats,
+        transactions=transactions,
+        categories=categories,
+    )
 
 
 @app.route("/expenses/add")
