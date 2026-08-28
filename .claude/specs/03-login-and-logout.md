@@ -10,7 +10,7 @@ Implements session-based authentication for Spendly. `GET /login` already render
 ## Routes
 - `POST /login` — verify email/password against `users` and start a session — public
   - On validation error (missing field, no matching email, or wrong password) — re-render `login.html` with a generic `error` (do not reveal whether the email exists), preserve submitted `email` in the form, HTTP 400
-  - On success — store the user's id in `session`, redirect to `GET /` (landing) — there is no dashboard route yet (that's a later step)
+  - On success — store the user's id in `session`, redirect to `GET /profile` (updated in Step 4 once the profile route existed; originally redirected to landing since there was no dashboard route yet)
 - `GET /logout` — clear the session and redirect to the login page — logged-in
   - Replaces the current stub (`"Logout — coming in Step 3"`)
   - If called while not logged in, just redirect to `/login` (no error)

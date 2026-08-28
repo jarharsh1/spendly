@@ -1,0 +1,1213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Spendly — Dashboard (design preview)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+/* ===== Spendly's real static/css/style.css (verbatim) ===== */
+/* ------------------------------------------------------------------ */
+/* Variables                                                           */
+/* ------------------------------------------------------------------ */
+
+:root {
+    --ink: #0f0f0f;
+    --ink-soft: #2d2d2d;
+    --ink-muted: #6b6b6b;
+    --ink-faint: #a0a0a0;
+    --paper: #f7f6f3;
+    --paper-warm: #f0ede6;
+    --paper-card: #ffffff;
+    --accent: #1a472a;
+    --accent-light: #e8f0eb;
+    --accent-2: #c17f24;
+    --accent-2-light: #fdf3e3;
+    --danger: #c0392b;
+    --danger-light: #fdecea;
+    --border: #e4e1da;
+    --border-soft: #eeebe4;
+
+    --font-display: 'DM Serif Display', Georgia, serif;
+    --font-body: 'DM Sans', system-ui, sans-serif;
+
+    --max-width: 1200px;
+    --auth-width: 440px;
+
+    --radius-sm: 6px;
+    --radius-md: 12px;
+    --radius-lg: 20px;
+}
+
+/* ------------------------------------------------------------------ */
+/* Reset                                                               */
+/* ------------------------------------------------------------------ */
+
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html { font-size: 16px; scroll-behavior: smooth; }
+
+body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: var(--font-body);
+    font-size: 1rem;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+}
+
+a { color: inherit; text-decoration: none; }
+
+/* ------------------------------------------------------------------ */
+/* Navbar                                                              */
+/* ------------------------------------------------------------------ */
+
+.navbar {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: var(--paper);
+    border-bottom: 1px solid var(--border);
+    padding: 0 2rem;
+}
+
+.nav-inner {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.nav-brand {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-family: var(--font-body);
+    font-weight: 600;
+    font-size: 1.1rem;
+    color: var(--ink);
+}
+
+.brand-icon {
+    color: var(--accent);
+    font-size: 1.3rem;
+}
+
+.brand-name { color: var(--ink); }
+
+.nav-links {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+.nav-links a { color: var(--ink-muted); transition: color 0.2s; }
+.nav-links a:hover { color: var(--ink); }
+
+.nav-cta {
+    background: var(--ink) !important;
+    color: var(--paper) !important;
+    padding: 0.45rem 1.1rem;
+    border-radius: var(--radius-sm);
+    transition: background 0.2s !important;
+}
+
+.nav-cta:hover { background: var(--accent) !important; }
+
+/* ------------------------------------------------------------------ */
+/* Main                                                                */
+/* ------------------------------------------------------------------ */
+
+.main-content { min-height: calc(100vh - 60px - 100px); }
+
+/* ------------------------------------------------------------------ */
+/* Hero                                                                */
+/* ------------------------------------------------------------------ */
+
+.hero {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 4.5rem 2rem 3.5rem;
+    gap: 3rem;
+    max-width: var(--max-width);
+    margin: 0 auto;
+}
+
+.hero-inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 720px;
+}
+
+.hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: var(--accent-light);
+    color: var(--accent);
+    font-size: 0.9rem;
+    font-weight: 500;
+    padding: 0.55rem 1.25rem;
+    border-radius: 999px;
+    margin-bottom: 1.75rem;
+}
+
+.hero-badge-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--accent);
+}
+
+.hero-title {
+    font-family: var(--font-body);
+    font-weight: 800;
+    font-size: clamp(2.5rem, 5.5vw, 3.75rem);
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+    color: var(--ink);
+    margin-bottom: 1.5rem;
+}
+
+.hero-title-accent {
+    color: #4caf7d;
+}
+
+.hero-subtitle {
+    font-size: 1.15rem;
+    color: var(--ink-muted);
+    line-height: 1.6;
+    max-width: 560px;
+    margin-bottom: 2.25rem;
+}
+
+.hero-actions {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    justify-content: center;
+}
+
+.hero-actions .btn-primary {
+    padding: 0.85rem 1.75rem;
+    font-size: 1rem;
+    font-weight: 700;
+    border-radius: var(--radius-sm);
+}
+
+/* ------------------------------------------------------------------ */
+/* Dashboard mockup (hero visual)                                      */
+/* ------------------------------------------------------------------ */
+
+.hero-visual {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.dash-window {
+    width: 100%;
+    max-width: 900px;
+    background: var(--paper-warm);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 1.75rem;
+}
+
+.dash-dots {
+    display: flex;
+    gap: 0.4rem;
+    margin-bottom: 1.5rem;
+}
+
+.dash-dot {
+    width: 11px;
+    height: 11px;
+    border-radius: 50%;
+}
+
+.dash-dot-red { background: #e07a6b; }
+.dash-dot-yellow { background: #e8b563; }
+.dash-dot-green { background: #8fcf9f; }
+
+.dash-stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+.dash-stat {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.4rem;
+    background: var(--paper-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    padding: 1.25rem 1.5rem;
+    text-align: left;
+}
+
+.dash-stat-label {
+    font-size: 0.85rem;
+    color: var(--ink-muted);
+}
+
+.dash-stat-value {
+    font-family: var(--font-body);
+    font-weight: 700;
+    font-size: 1.6rem;
+    color: var(--ink);
+}
+
+.dash-stat-delta {
+    font-size: 0.85rem;
+    font-weight: 500;
+}
+
+.dash-stat-delta-pos { color: #4caf7d; }
+.dash-stat-delta-neg { color: var(--danger); }
+.dash-stat-delta-muted { color: var(--ink-faint); }
+
+.dash-bars {
+    background: var(--paper-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    padding: 1.5rem 1.75rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.1rem;
+}
+
+.dash-bar-row {
+    display: grid;
+    grid-template-columns: 70px 1fr;
+    align-items: center;
+    gap: 1.25rem;
+}
+
+.dash-bar-label {
+    font-size: 0.95rem;
+    color: var(--ink-soft);
+    text-align: left;
+}
+
+.dash-bar-track {
+    height: 10px;
+    background: var(--border-soft);
+    border-radius: 999px;
+    overflow: hidden;
+}
+
+.dash-bar-fill {
+    height: 100%;
+    border-radius: 999px;
+}
+
+.dash-bar-food { background: var(--accent-2); }
+.dash-bar-travel { background: #4a7fd6; }
+.dash-bar-bills { background: #7b6fd6; }
+
+/* ------------------------------------------------------------------ */
+/* Buttons                                                             */
+/* ------------------------------------------------------------------ */
+
+.btn-primary {
+    display: inline-block;
+    background: var(--ink);
+    color: var(--paper);
+    padding: 0.65rem 1.5rem;
+    border-radius: var(--radius-sm);
+    font-family: var(--font-body);
+    font-size: 0.9rem;
+    font-weight: 500;
+    cursor: pointer;
+    border: none;
+    transition: background 0.2s;
+    text-decoration: none;
+}
+
+.btn-primary:hover { background: var(--accent); }
+
+.btn-ghost {
+    display: inline-block;
+    background: transparent;
+    color: var(--ink-soft);
+    padding: 0.65rem 1.5rem;
+    border-radius: var(--radius-sm);
+    font-size: 0.9rem;
+    font-weight: 500;
+    border: 1px solid var(--border);
+    transition: all 0.2s;
+    text-decoration: none;
+}
+
+.btn-ghost:hover {
+    border-color: var(--ink);
+    color: var(--ink);
+}
+
+/* ------------------------------------------------------------------ */
+/* Features section                                                    */
+/* ------------------------------------------------------------------ */
+
+.features {
+    background: var(--paper-warm);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    padding: 5rem 2rem;
+}
+
+.features-inner {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+}
+
+.feature-card {
+    background: var(--paper-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    padding: 2rem;
+}
+
+.feature-icon {
+    font-size: 1.5rem;
+    color: var(--accent);
+    margin-bottom: 1rem;
+    font-weight: 700;
+}
+
+.feature-title {
+    font-family: var(--font-display);
+    font-size: 1.2rem;
+    color: var(--ink);
+    margin-bottom: 0.75rem;
+}
+
+.feature-body {
+    font-size: 0.9rem;
+    color: var(--ink-muted);
+    line-height: 1.7;
+}
+
+/* ------------------------------------------------------------------ */
+/* CTA section                                                         */
+/* ------------------------------------------------------------------ */
+
+.cta-section {
+    padding: 6rem 2rem;
+    text-align: center;
+}
+
+.cta-inner {
+    max-width: 560px;
+    margin: 0 auto;
+}
+
+.cta-title {
+    font-family: var(--font-display);
+    font-size: clamp(1.75rem, 3vw, 2.5rem);
+    color: var(--ink);
+    margin-bottom: 1rem;
+}
+
+.cta-body {
+    font-size: 1rem;
+    color: var(--ink-muted);
+    margin-bottom: 2rem;
+}
+
+/* ------------------------------------------------------------------ */
+/* Auth pages                                                          */
+/* ------------------------------------------------------------------ */
+
+.auth-section {
+    min-height: calc(100vh - 60px - 100px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 3rem 2rem;
+}
+
+.auth-container {
+    width: 100%;
+    max-width: var(--auth-width);
+}
+
+.auth-header {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.auth-title {
+    font-family: var(--font-display);
+    font-size: 2rem;
+    color: var(--ink);
+    margin-bottom: 0.5rem;
+}
+
+.auth-subtitle {
+    font-size: 0.9rem;
+    color: var(--ink-muted);
+}
+
+.auth-card {
+    background: var(--paper-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    padding: 2rem;
+    margin-bottom: 1.5rem;
+}
+
+.auth-error {
+    background: var(--danger-light);
+    color: var(--danger);
+    border: 1px solid #f5c6c2;
+    border-radius: var(--radius-sm);
+    padding: 0.75rem 1rem;
+    font-size: 0.875rem;
+    margin-bottom: 1.25rem;
+}
+
+.form-group { margin-bottom: 1.25rem; }
+
+.form-group label {
+    display: block;
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: var(--ink-soft);
+    margin-bottom: 0.4rem;
+}
+
+.form-input {
+    width: 100%;
+    padding: 0.6rem 0.875rem;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    font-family: var(--font-body);
+    font-size: 0.95rem;
+    color: var(--ink);
+    background: var(--paper);
+    outline: none;
+    transition: border-color 0.2s;
+}
+
+.form-input:focus { border-color: var(--accent); }
+
+.form-input::placeholder { color: var(--ink-faint); }
+
+.btn-submit {
+    width: 100%;
+    padding: 0.7rem;
+    background: var(--ink);
+    color: var(--paper);
+    border: none;
+    border-radius: var(--radius-sm);
+    font-family: var(--font-body);
+    font-size: 0.95rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background 0.2s;
+    margin-top: 0.5rem;
+}
+
+.btn-submit:hover { background: var(--accent); }
+
+.auth-switch {
+    text-align: center;
+    font-size: 0.875rem;
+    color: var(--ink-muted);
+}
+
+.auth-switch a {
+    color: var(--accent);
+    font-weight: 500;
+}
+
+.auth-switch a:hover { text-decoration: underline; }
+
+/* ------------------------------------------------------------------ */
+/* Footer                                                              */
+/* ------------------------------------------------------------------ */
+
+.footer {
+    background: var(--ink);
+    color: var(--paper);
+    padding: 2.5rem 2rem;
+    text-align: center;
+}
+
+.footer-inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.4rem;
+}
+
+.footer .brand-icon { color: var(--accent-2); font-size: 1.5rem; }
+
+.footer-name {
+    font-weight: 600;
+    font-size: 1rem;
+}
+
+.footer-copy {
+    font-size: 0.8rem;
+    color: var(--ink-faint);
+}
+
+.footer-links {
+    display: flex;
+    gap: 1.5rem;
+    margin-top: 0.6rem;
+    font-size: 0.8rem;
+    color: var(--ink-faint);
+}
+
+.footer-links a { transition: color 0.2s; }
+.footer-links a:hover { color: var(--paper); }
+
+/* ------------------------------------------------------------------ */
+/* Legal pages (Terms, Privacy)                                        */
+/* ------------------------------------------------------------------ */
+
+.legal-page {
+    padding: 5rem 2rem 4rem;
+    background: var(--paper);
+}
+
+.legal-inner {
+    max-width: 760px;
+    margin: 0 auto;
+}
+
+.legal-title {
+    font-family: var(--font-display);
+    font-size: clamp(2rem, 4vw, 2.75rem);
+    color: var(--ink);
+    letter-spacing: -0.01em;
+    margin-bottom: 0.5rem;
+}
+
+.legal-updated {
+    font-size: 0.85rem;
+    color: var(--ink-muted);
+    margin-bottom: 2.5rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid var(--border);
+}
+
+.legal-section {
+    background: var(--paper-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    padding: 1.75rem 2rem;
+    margin-bottom: 1.25rem;
+}
+
+.legal-section h2 {
+    font-family: var(--font-display);
+    font-size: 1.35rem;
+    color: var(--accent);
+    margin-bottom: 1rem;
+}
+
+.legal-section p {
+    font-size: 0.95rem;
+    color: var(--ink-soft);
+    line-height: 1.7;
+    margin-bottom: 0.9rem;
+}
+
+.legal-section p:last-child { margin-bottom: 0; }
+
+.legal-section ul {
+    margin: 0 0 1rem 1.25rem;
+    color: var(--ink-soft);
+    font-size: 0.95rem;
+    line-height: 1.7;
+}
+
+.legal-section li { margin-bottom: 0.4rem; }
+
+.legal-back {
+    margin-top: 2rem;
+    text-align: center;
+    font-size: 0.9rem;
+}
+
+.legal-back a {
+    color: var(--accent);
+    font-weight: 500;
+    transition: color 0.2s;
+}
+
+.legal-back a:hover { color: var(--ink); }
+
+/* ------------------------------------------------------------------ */
+/* Modal (How it works)                                                */
+/* ------------------------------------------------------------------ */
+
+.modal-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
+    background: rgba(15, 15, 15, 0.72);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+}
+
+.modal-overlay[hidden] { display: none; }
+
+.modal-box {
+    position: relative;
+    width: 100%;
+    max-width: 860px;
+    background: var(--paper-card);
+    border-radius: var(--radius-md);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    overflow: hidden;
+}
+
+.modal-close {
+    position: absolute;
+    top: 0.75rem;
+    right: 0.75rem;
+    z-index: 1;
+    width: 36px;
+    height: 36px;
+    border: none;
+    border-radius: 50%;
+    background: var(--ink);
+    color: var(--paper);
+    font-size: 1.4rem;
+    line-height: 1;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s;
+}
+
+.modal-close:hover { background: var(--accent); }
+
+.modal-video-wrap {
+    position: relative;
+    width: 100%;
+    padding-top: 56.25%;
+}
+
+.modal-video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: none;
+}
+
+/* ------------------------------------------------------------------ */
+/* Responsive                                                          */
+/* ------------------------------------------------------------------ */
+
+@media (max-width: 900px) {
+    .dash-stats { grid-template-columns: 1fr; }
+
+    .features-inner { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 600px) {
+    .nav-links a:not(.nav-cta) { display: none; }
+    .hero { padding: 3rem 1rem 2rem; }
+    .hero-actions { flex-direction: column; width: 100%; }
+    .hero-actions .btn-primary { width: 100%; text-align: center; }
+    .dash-window { padding: 1.25rem; }
+    .legal-page { padding: 3rem 1rem 2rem; }
+    .legal-section { padding: 1.25rem 1.25rem; }
+}
+
+
+/* ===== Skill-produced additions ===== */
+/* ================================================================== */
+/* Dashboard additions — produced by the spendly-frontend-design skill */
+/* Repo split: token block + components -> static/css/style.css,       */
+/* markup -> templates/dashboard.html (extends base.html).             */
+/* ================================================================== */
+
+/* --- Extended tokens (skill: "extend, don't scatter") --- */
+:root {
+    --positive: #2f8f5f;
+    --positive-light: #e6f2ec;
+
+    --space-2: 0.5rem;
+    --space-3: 0.75rem;
+    --space-4: 1rem;
+    --space-5: 1.5rem;
+    --space-6: 2rem;
+
+    --shadow-sm: 0 1px 2px rgba(15, 15, 15, 0.04);
+    --shadow-md: 0 2px 8px rgba(15, 15, 15, 0.06);
+
+    --transition: 200ms ease;
+
+    --cat-food: #c17f24;
+    --cat-travel: #4a7fd6;
+    --cat-bills: #7b6fd6;
+    --cat-shopping: #2f8f5f;
+    --cat-income: #2f8f5f;
+    --cat-other: #6b6b6b;
+}
+
+/* --- Accessibility: real keyboard focus ring --- */
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+/* --- App page shell --- */
+.app-page { max-width: var(--max-width); margin: 0 auto; padding: var(--space-6) 2rem 4rem; }
+.nav-app { gap: 1.75rem; }
+.nav-app .nav-link.is-active { color: var(--ink); font-weight: 600; }
+
+/* --- Page header --- */
+.page-header {
+    display: flex; align-items: flex-end; justify-content: space-between;
+    gap: var(--space-4); margin-bottom: var(--space-6); flex-wrap: wrap;
+}
+.page-header .ph-title { font-family: var(--font-display); font-size: 2.1rem; line-height: 1.1; color: var(--ink); }
+.page-header .ph-subtitle { color: var(--ink-muted); font-size: 0.95rem; margin-top: 0.35rem; }
+.btn-primary.btn-sm { padding: 0.55rem 1.1rem; font-size: 0.9rem; }
+
+/* --- Category icons: inline SVG in a tinted badge (tint derives from currentColor) --- */
+.cat-badge {
+    width: 32px; height: 32px; border-radius: 9px;
+    display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0;
+    background: color-mix(in srgb, currentColor 12%, var(--paper-card));
+}
+.cat-badge svg { width: 17px; height: 17px; }
+.cat-badge.sm { width: 24px; height: 24px; border-radius: 7px; }
+.cat-badge.sm svg { width: 14px; height: 14px; }
+.cat-food { color: var(--cat-food); }
+.cat-travel { color: var(--cat-travel); }
+.cat-bills { color: var(--cat-bills); }
+.cat-shopping { color: var(--cat-shopping); }
+.cat-income { color: var(--cat-income); }
+.cat-other { color: var(--cat-other); }
+
+/* --- KPI / summary cards --- */
+.stat-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-5); margin-bottom: var(--space-6); }
+.stat-card {
+    background: var(--paper-card); border: 1px solid var(--border); border-radius: var(--radius-md);
+    box-shadow: var(--shadow-sm); padding: var(--space-5); display: flex; flex-direction: column; gap: 0.4rem;
+}
+.stat-label { font-size: 0.8rem; color: var(--ink-muted); letter-spacing: 0.02em; }
+.stat-value { font-size: 1.9rem; font-weight: 600; color: var(--ink); font-variant-numeric: tabular-nums; line-height: 1.1; }
+.stat-delta { font-size: 0.82rem; font-weight: 500; }
+.stat-delta-pos { color: var(--positive); }
+.stat-delta-neg { color: var(--danger); }
+.stat-delta-muted { color: var(--ink-faint); }
+
+/* --- Panels --- */
+.panel {
+    background: var(--paper-card); border: 1px solid var(--border); border-radius: var(--radius-md);
+    box-shadow: var(--shadow-sm); padding: var(--space-5); margin-bottom: var(--space-6);
+}
+.panel-head { display: flex; align-items: center; justify-content: space-between; gap: var(--space-4); margin-bottom: var(--space-5); flex-wrap: wrap; }
+.panel-title { font-family: var(--font-display); font-size: 1.25rem; color: var(--ink); }
+.panel-toolbar { display: flex; align-items: center; gap: 0.6rem; }
+.search-input {
+    border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 0.5rem 0.8rem;
+    font-family: var(--font-body); font-size: 0.9rem; color: var(--ink); background: var(--paper);
+    min-width: 200px; transition: border-color var(--transition);
+}
+.search-input:focus { border-color: var(--accent); outline: none; }
+.search-input::placeholder { color: var(--ink-faint); }
+
+/* --- Monthly overview + drill-down (native <details>, no JS) --- */
+.month-list { display: flex; flex-direction: column; }
+.month-row {
+    display: grid; grid-template-columns: 130px 1fr auto 20px;
+    align-items: center; gap: var(--space-4); padding: 0.7rem 0.25rem;
+}
+.month-row + .month-row, details + .month-row, .month-row + details { border-top: 1px solid var(--border-soft); }
+details + details, details + .month-row { border-top: 1px solid var(--border-soft); }
+.month-label { font-size: 0.95rem; color: var(--ink-soft); font-weight: 500; }
+.month-track { height: 8px; background: var(--paper-warm); border-radius: 999px; overflow: hidden; }
+.month-fill { height: 100%; border-radius: 999px; background: color-mix(in srgb, var(--accent) 32%, var(--paper-warm)); }
+.month-fill.is-current { background: var(--accent); }
+.month-total { font-size: 0.92rem; color: var(--ink); font-variant-numeric: tabular-nums; white-space: nowrap; }
+.chev { color: var(--ink-faint); display: inline-flex; transition: transform var(--transition); }
+.month-empty-chev { width: 20px; }
+
+/* details/summary reset */
+.month-details { border-top: 1px solid var(--border-soft); }
+.month-details > summary { list-style: none; cursor: pointer; }
+.month-details > summary::-webkit-details-marker { display: none; }
+.month-details > summary .month-row { border-top: none; }
+.month-details[open] .chev { transform: rotate(90deg); }
+.month-details[open] > summary .month-label { color: var(--ink); font-weight: 600; }
+
+/* day-level detail */
+.day-detail { padding: var(--space-4) 0.25rem var(--space-2); }
+.day-detail-head { display: flex; align-items: baseline; justify-content: space-between; margin-bottom: var(--space-4); }
+.day-detail-title { font-size: 0.82rem; color: var(--ink-muted); text-transform: uppercase; letter-spacing: 0.04em; }
+.day-detail-note { font-size: 0.82rem; color: var(--ink-muted); }
+.day-detail-note strong { color: var(--ink); font-weight: 600; }
+.day-chart { display: flex; align-items: flex-end; gap: 3px; height: 92px; }
+.day-bar {
+    flex: 1; min-height: 3px; padding: 0; border: 0; appearance: none; font: inherit; cursor: pointer;
+    background: color-mix(in srgb, var(--accent) 24%, var(--paper-warm));
+    border-radius: 3px 3px 0 0; transition: background var(--transition);
+}
+.day-bar:hover { background: color-mix(in srgb, var(--accent) 55%, var(--paper-warm)); }
+.day-bar.is-today { background: color-mix(in srgb, var(--accent) 60%, var(--paper-warm)); }
+.day-bar.is-zero { background: var(--border-soft); }
+.day-bar.is-selected { background: var(--accent); outline: 2px solid var(--accent); outline-offset: 2px; }
+.day-axis { display: flex; justify-content: space-between; margin-top: 0.5rem; font-size: 0.72rem; color: var(--ink-faint); font-variant-numeric: tabular-nums; }
+.month-note { margin-top: var(--space-4); font-size: 0.82rem; color: var(--ink-faint); }
+
+/* selected-day spend list */
+.day-panel { margin-top: var(--space-5); border-top: 1px solid var(--border-soft); padding-top: var(--space-4); }
+.day-panel-head { display: flex; align-items: baseline; justify-content: space-between; margin-bottom: var(--space-3); }
+.day-panel-title { font-size: 0.95rem; font-weight: 600; color: var(--ink); }
+.day-panel-total { font-size: 0.9rem; color: var(--ink-muted); font-variant-numeric: tabular-nums; }
+.day-txn { display: flex; align-items: center; gap: 0.7rem; padding: 0.55rem 0; }
+.day-txn + .day-txn { border-top: 1px solid var(--border-soft); }
+.day-txn-name { flex: 1; font-size: 0.92rem; color: var(--ink); }
+.day-txn-cat { color: var(--ink-muted); font-size: 0.8rem; margin-left: 0.4rem; }
+.day-txn-amt { font-variant-numeric: tabular-nums; font-weight: 500; color: var(--danger); white-space: nowrap; }
+.day-empty { display: flex; align-items: center; gap: 0.6rem; padding: 0.6rem 0; color: var(--ink-muted); font-size: 0.9rem; }
+.day-empty svg { color: var(--ink-faint); }
+
+/* --- Budget bars --- */
+.budget-row { display: grid; grid-template-columns: 130px 1fr auto; align-items: center; gap: var(--space-4); padding: 0.6rem 0; }
+.budget-row + .budget-row { border-top: 1px solid var(--border-soft); }
+.budget-label { display: flex; align-items: center; gap: 0.55rem; font-size: 0.92rem; color: var(--ink-soft); }
+.budget-track { height: 8px; background: var(--paper-warm); border-radius: 999px; overflow: hidden; }
+.budget-fill { height: 100%; border-radius: 999px; }
+.budget-fill.over { background: var(--danger) !important; }
+.budget-figure { font-size: 0.85rem; color: var(--ink-muted); font-variant-numeric: tabular-nums; white-space: nowrap; }
+.budget-figure .over-text { color: var(--danger); font-weight: 500; }
+
+/* --- Transactions table --- */
+.txn-table { width: 100%; border-collapse: collapse; }
+.txn-table th {
+    text-align: left; font-size: 0.78rem; font-weight: 500; color: var(--ink-muted);
+    text-transform: uppercase; letter-spacing: 0.04em; padding: 0 0.5rem 0.7rem; border-bottom: 1px solid var(--border);
+}
+.txn-table th.num, .txn-table td.num { text-align: right; }
+.txn-table td { padding: 0.7rem 0.5rem; border-bottom: 1px solid var(--border-soft); font-size: 0.92rem; color: var(--ink); vertical-align: middle; }
+.txn-table tbody tr:last-child td { border-bottom: none; }
+.txn-table tbody tr { transition: background var(--transition); }
+.txn-table tbody tr:hover { background: var(--paper-warm); }
+.txn-name { display: flex; align-items: center; gap: 0.7rem; }
+.txn-name-main { display: flex; flex-direction: column; line-height: 1.3; }
+.txn-cat { color: var(--ink-muted); font-size: 0.8rem; }
+.txn-date { color: var(--ink-muted); font-variant-numeric: tabular-nums; white-space: nowrap; }
+.amount { font-variant-numeric: tabular-nums; font-weight: 500; color: var(--ink); white-space: nowrap; }
+.amount.is-negative { color: var(--danger); }
+.amount.is-positive { color: var(--positive); }
+.txn-actions { display: flex; gap: 0.4rem; justify-content: flex-end; opacity: 0; transition: opacity var(--transition); }
+.txn-table tbody tr:hover .txn-actions { opacity: 1; }
+.icon-btn {
+    border: 1px solid var(--border); background: var(--paper-card); border-radius: var(--radius-sm);
+    padding: 0.3rem 0.6rem; font-size: 0.8rem; color: var(--ink-muted); cursor: pointer;
+    transition: all var(--transition); font-family: var(--font-body);
+}
+.icon-btn:hover { color: var(--ink); border-color: var(--ink-faint); }
+.icon-btn.danger:hover { color: var(--danger); border-color: var(--danger); }
+
+/* --- Empty state --- */
+.empty-state { text-align: center; padding: var(--space-6) var(--space-4); display: flex; flex-direction: column; align-items: center; gap: 0.6rem; }
+.empty-glyph { width: 44px; height: 44px; border: 1.5px solid var(--border); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--ink-faint); margin-bottom: 0.3rem; }
+.empty-title { font-family: var(--font-display); font-size: 1.15rem; color: var(--ink); }
+.empty-body { color: var(--ink-muted); font-size: 0.92rem; max-width: 320px; }
+.empty-state .btn-primary { margin-top: 0.6rem; }
+
+/* --- Two-column panel layout --- */
+.panel-cols { display: grid; grid-template-columns: 1.4fr 1fr; gap: var(--space-6); }
+.panel-cols .panel { margin-bottom: 0; }
+
+/* --- Responsive (extend existing 900 / 600 breakpoints) --- */
+@media (max-width: 900px) {
+    .stat-grid { grid-template-columns: repeat(2, 1fr); }
+    .panel-cols { grid-template-columns: 1fr; }
+}
+@media (max-width: 600px) {
+    .app-page { padding: var(--space-5) 1.1rem 3rem; }
+    .stat-grid { grid-template-columns: 1fr; }
+    .page-header .ph-title { font-size: 1.7rem; }
+    .month-row { grid-template-columns: 96px 1fr auto 18px; gap: 0.75rem; }
+    .txn-cat { display: none; }
+    .search-input { min-width: 0; flex: 1; }
+    .txn-actions { opacity: 1; }
+}
+
+
+.sr-only { position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0,0,0,0); border:0; }
+</style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-inner">
+            <a href="#" class="nav-brand">
+                <span class="brand-icon">&#9672;</span>
+                <span class="brand-name">Spendly</span>
+            </a>
+            <div class="nav-links nav-app">
+                <a href="#" class="nav-link is-active">Dashboard</a>
+                <a href="#" class="nav-link">Transactions</a>
+                <a href="#" class="nav-link">Budgets</a>
+                <a href="#" class="nav-cta">Sign out</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="main-content">
+        <div class="app-page">
+
+            <header class="page-header">
+                <div>
+                    <h1 class="ph-title">Dashboard</h1>
+                    <p class="ph-subtitle">August 2026 &middot; Here's where your money went this month.</p>
+                </div>
+                <a href="#" class="btn-primary btn-sm">+ Add expense</a>
+            </header>
+
+            <section class="stat-grid" aria-label="Summary">
+                <div class="stat-card">
+                    <span class="stat-label">Spent this month</span>
+                    <span class="stat-value">&#8377;23,629</span>
+                    <span class="stat-delta stat-delta-neg">&#9650; +12% vs last month</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-label">Budget left</span>
+                    <span class="stat-value">&#8377;6,371</span>
+                    <span class="stat-delta stat-delta-pos">21% remaining</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-label">Transactions</span>
+                    <span class="stat-value">18</span>
+                    <span class="stat-delta stat-delta-muted">this month</span>
+                </div>
+            </section>
+
+            <section class="panel">
+                <div class="panel-head"><h2 class="panel-title">Monthly overview</h2></div>
+                <div class="month-list">
+                    <details class="month-details" open>
+                        <summary>
+                            <div class="month-row"><span class="month-label">August 2026</span><span class="month-track"><span class="month-fill is-current" style="width:100%"></span></span><span class="month-total">₹23,629</span><span class="chev" aria-hidden="true"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></span></div>
+                        </summary>
+                        <div class="day-detail">
+                            <div class="day-detail-head">
+                                <span class="day-detail-title">Daily spending &middot; August</span>
+                                <span class="day-detail-note">Highest: <strong>Aug 21 · ₹4,499</strong></span>
+                            </div>
+                            <div class="day-chart" id="day-chart">
+                            <button type="button" class="day-bar is-zero" data-day="1" style="height:3%" aria-pressed="false" aria-label="August 1, no spend"></button>
+                            <button type="button" class="day-bar" data-day="2" style="height:28%" aria-pressed="false" aria-label="August 2, ₹1,240"></button>
+                            <button type="button" class="day-bar is-zero" data-day="3" style="height:3%" aria-pressed="false" aria-label="August 3, no spend"></button>
+                            <button type="button" class="day-bar" data-day="4" style="height:17%" aria-pressed="false" aria-label="August 4, ₹760"></button>
+                            <button type="button" class="day-bar" data-day="5" style="height:47%" aria-pressed="false" aria-label="August 5, ₹2,100"></button>
+                            <button type="button" class="day-bar is-zero" data-day="6" style="height:3%" aria-pressed="false" aria-label="August 6, no spend"></button>
+                            <button type="button" class="day-bar is-zero" data-day="7" style="height:3%" aria-pressed="false" aria-label="August 7, no spend"></button>
+                            <button type="button" class="day-bar" data-day="8" style="height:22%" aria-pressed="false" aria-label="August 8, ₹980"></button>
+                            <button type="button" class="day-bar" data-day="9" style="height:32%" aria-pressed="false" aria-label="August 9, ₹1,450"></button>
+                            <button type="button" class="day-bar is-zero" data-day="10" style="height:3%" aria-pressed="false" aria-label="August 10, no spend"></button>
+                            <button type="button" class="day-bar" data-day="11" style="height:7%" aria-pressed="false" aria-label="August 11, ₹320"></button>
+                            <button type="button" class="day-bar" data-day="12" style="height:48%" aria-pressed="false" aria-label="August 12, ₹2,150"></button>
+                            <button type="button" class="day-bar is-zero" data-day="13" style="height:3%" aria-pressed="false" aria-label="August 13, no spend"></button>
+                            <button type="button" class="day-bar" data-day="14" style="height:14%" aria-pressed="false" aria-label="August 14, ₹640"></button>
+                            <button type="button" class="day-bar is-zero" data-day="15" style="height:3%" aria-pressed="false" aria-label="August 15, no spend"></button>
+                            <button type="button" class="day-bar" data-day="16" style="height:26%" aria-pressed="false" aria-label="August 16, ₹1,180"></button>
+                            <button type="button" class="day-bar is-zero" data-day="17" style="height:3%" aria-pressed="false" aria-label="August 17, no spend"></button>
+                            <button type="button" class="day-bar is-zero" data-day="18" style="height:3%" aria-pressed="false" aria-label="August 18, no spend"></button>
+                            <button type="button" class="day-bar" data-day="19" style="height:67%" aria-pressed="false" aria-label="August 19, ₹3,020"></button>
+                            <button type="button" class="day-bar is-zero" data-day="20" style="height:3%" aria-pressed="false" aria-label="August 20, no spend"></button>
+                            <button type="button" class="day-bar" data-day="21" style="height:100%" aria-pressed="false" aria-label="August 21, ₹4,499"></button>
+                            <button type="button" class="day-bar" data-day="22" style="height:15%" aria-pressed="false" aria-label="August 22, ₹680"></button>
+                            <button type="button" class="day-bar" data-day="23" style="height:48%" aria-pressed="false" aria-label="August 23, ₹2,150"></button>
+                            <button type="button" class="day-bar" data-day="24" style="height:12%" aria-pressed="false" aria-label="August 24, ₹540"></button>
+                            <button type="button" class="day-bar is-zero" data-day="25" style="height:3%" aria-pressed="false" aria-label="August 25, no spend"></button>
+                            <button type="button" class="day-bar is-zero" data-day="26" style="height:3%" aria-pressed="false" aria-label="August 26, no spend"></button>
+                            <button type="button" class="day-bar" data-day="27" style="height:15%" aria-pressed="false" aria-label="August 27, ₹680"></button>
+                            <button type="button" class="day-bar is-today" data-day="28" style="height:28%" aria-pressed="false" aria-label="August 28, ₹1,240"></button>
+                            </div>
+                            <div class="day-axis"><span>1</span><span>7</span><span>14</span><span>21</span><span>28</span></div>
+                            <div class="day-panel" id="day-panel" aria-live="polite"></div>
+                        </div>
+                    </details>
+                    <div class="month-row"><span class="month-label">July 2026</span><span class="month-track"><span class="month-fill" style="width:69%"></span></span><span class="month-total">₹16,290</span><span class="month-empty-chev"></span></div>
+                    <div class="month-row"><span class="month-label">June 2026</span><span class="month-track"><span class="month-fill" style="width:84%"></span></span><span class="month-total">₹19,870</span><span class="month-empty-chev"></span></div>
+                    <div class="month-row"><span class="month-label">May 2026</span><span class="month-track"><span class="month-fill" style="width:60%"></span></span><span class="month-total">₹14,100</span><span class="month-empty-chev"></span></div>
+                    <div class="month-row"><span class="month-label">April 2026</span><span class="month-track"><span class="month-fill" style="width:66%"></span></span><span class="month-total">₹15,540</span><span class="month-empty-chev"></span></div>
+                    <div class="month-row"><span class="month-label">March 2026</span><span class="month-track"><span class="month-fill" style="width:54%"></span></span><span class="month-total">₹12,760</span><span class="month-empty-chev"></span></div>
+                </div>
+                <p class="month-note">Click the current month to expand, then click any day to see that day's spends. Daily breakdown is available for the current month only.</p>
+            </section>
+
+            <div class="panel-cols">
+                <section class="panel">
+                    <div class="panel-head">
+                        <h2 class="panel-title">Recent transactions</h2>
+                        <div class="panel-toolbar">
+                            <input class="search-input" type="search" placeholder="Search transactions" aria-label="Search transactions">
+                        </div>
+                    </div>
+                    <table class="txn-table">
+                        <thead>
+                            <tr>
+                                <th scope="col">Transaction</th>
+                                <th scope="col">Date</th>
+                                <th scope="col" class="num">Amount</th>
+                                <th scope="col" class="num"><span class="sr-only">Actions</span></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><span class="txn-name"><span class="cat-badge cat-food" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12h16"/><path d="M5 12a7 7 0 0 0 14 0"/><path d="M10 4c0 1.1-1 1.6-1 2.6S10 8.5 10 8.5"/><path d="M14 4c0 1.1-1 1.6-1 2.6S14 8.5 14 8.5"/></svg></span><span class="txn-name-main"><span>Blinkit groceries</span><span class="txn-cat">Food</span></span></span></td>
+                                <td class="txn-date">28 Aug</td>
+                                <td class="num"><span class="amount is-negative">−₹1,240</span></td>
+                                <td class="num"><span class="txn-actions"><button class="icon-btn">Edit</button><button class="icon-btn danger">Delete</button></span></td>
+                            </tr>
+                            <tr>
+                                <td><span class="txn-name"><span class="cat-badge cat-travel" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l1.4-4.2A2 2 0 0 1 8.3 6.4h7.4a2 2 0 0 1 1.9 1.4L19 12"/><path d="M4 12h16v4.2a1 1 0 0 1-1 1h-1.4a1 1 0 0 1-1-1V15H7.4v1.2a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1z"/><path d="M7.5 14.5h0"/><path d="M16.5 14.5h0"/></svg></span><span class="txn-name-main"><span>Uber to airport</span><span class="txn-cat">Travel</span></span></span></td>
+                                <td class="txn-date">27 Aug</td>
+                                <td class="num"><span class="amount is-negative">−₹680</span></td>
+                                <td class="num"><span class="txn-actions"><button class="icon-btn">Edit</button><button class="icon-btn danger">Delete</button></span></td>
+                            </tr>
+                            <tr>
+                                <td><span class="txn-name"><span class="cat-badge cat-income" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="6.5" width="18" height="11" rx="2"/><circle cx="12" cy="12" r="2.4"/><path d="M6.5 9.5h.01"/><path d="M17.5 14.5h.01"/></svg></span><span class="txn-name-main"><span>Salary credit</span><span class="txn-cat">Income</span></span></span></td>
+                                <td class="txn-date">25 Aug</td>
+                                <td class="num"><span class="amount is-positive">+₹62,000</span></td>
+                                <td class="num"><span class="txn-actions"><button class="icon-btn">Edit</button><button class="icon-btn danger">Delete</button></span></td>
+                            </tr>
+                            <tr>
+                                <td><span class="txn-name"><span class="cat-badge cat-bills" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3.5h12v17l-2-1.2-2 1.2-2-1.2-2 1.2-2-1.2z"/><path d="M9.5 8.5h5"/><path d="M9.5 12h5"/></svg></span><span class="txn-name-main"><span>Electricity bill</span><span class="txn-cat">Bills</span></span></span></td>
+                                <td class="txn-date">23 Aug</td>
+                                <td class="num"><span class="amount is-negative">−₹2,150</span></td>
+                                <td class="num"><span class="txn-actions"><button class="icon-btn">Edit</button><button class="icon-btn danger">Delete</button></span></td>
+                            </tr>
+                            <tr>
+                                <td><span class="txn-name"><span class="cat-badge cat-shopping" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M6 8h12l-1 12.5H7z"/><path d="M9 8V6.2a3 3 0 0 1 6 0V8"/></svg></span><span class="txn-name-main"><span>Zara jacket</span><span class="txn-cat">Shopping</span></span></span></td>
+                                <td class="txn-date">21 Aug</td>
+                                <td class="num"><span class="amount is-negative">−₹4,499</span></td>
+                                <td class="num"><span class="txn-actions"><button class="icon-btn">Edit</button><button class="icon-btn danger">Delete</button></span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </section>
+
+                <div>
+                    <section class="panel">
+                        <div class="panel-head"><h2 class="panel-title">Budget by category</h2></div>
+                        <div class="budget-row">
+                            <span class="budget-label"><span class="cat-badge sm cat-food" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12h16"/><path d="M5 12a7 7 0 0 0 14 0"/><path d="M10 4c0 1.1-1 1.6-1 2.6S10 8.5 10 8.5"/><path d="M14 4c0 1.1-1 1.6-1 2.6S14 8.5 14 8.5"/></svg></span> Food</span>
+                            <span class="budget-track"><span class="budget-fill" style="width:78%;background:var(--cat-food)"></span></span>
+                            <span class="budget-figure">₹7,800 / 10,000</span>
+                        </div>
+                        <div class="budget-row">
+                            <span class="budget-label"><span class="cat-badge sm cat-travel" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l1.4-4.2A2 2 0 0 1 8.3 6.4h7.4a2 2 0 0 1 1.9 1.4L19 12"/><path d="M4 12h16v4.2a1 1 0 0 1-1 1h-1.4a1 1 0 0 1-1-1V15H7.4v1.2a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1z"/><path d="M7.5 14.5h0"/><path d="M16.5 14.5h0"/></svg></span> Travel</span>
+                            <span class="budget-track"><span class="budget-fill" style="width:52%;background:var(--cat-travel)"></span></span>
+                            <span class="budget-figure">₹2,600 / 5,000</span>
+                        </div>
+                        <div class="budget-row">
+                            <span class="budget-label"><span class="cat-badge sm cat-bills" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3.5h12v17l-2-1.2-2 1.2-2-1.2-2 1.2-2-1.2z"/><path d="M9.5 8.5h5"/><path d="M9.5 12h5"/></svg></span> Bills</span>
+                            <span class="budget-track"><span class="budget-fill over" style="width:100%"></span></span>
+                            <span class="budget-figure"><span class="over-text">₹4,300 / 4,000</span></span>
+                        </div>
+                        <div class="budget-row">
+                            <span class="budget-label"><span class="cat-badge sm cat-shopping" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M6 8h12l-1 12.5H7z"/><path d="M9 8V6.2a3 3 0 0 1 6 0V8"/></svg></span> Shopping</span>
+                            <span class="budget-track"><span class="budget-fill" style="width:30%;background:var(--cat-shopping)"></span></span>
+                            <span class="budget-figure">₹4,499 / 15,000</span>
+                        </div>
+                    </section>
+                    <section class="panel">
+                        <div class="empty-state">
+                            <span class="empty-glyph"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v18"/><path d="M3 12h18"/></svg></span>
+                            <span class="empty-title">No savings goals yet</span>
+                            <span class="empty-body">Set a goal and Spendly will track your progress every month.</span>
+                            <a href="#" class="btn-primary btn-sm">Create a goal</a>
+                        </div>
+                    </section>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-inner">
+            <span class="brand-icon">&#9672;</span>
+            <span class="footer-name">Spendly</span>
+            <p class="footer-copy">Track every rupee. Own your finances.</p>
+            <div class="footer-links">
+                <a href="#">Terms and Conditions</a>
+                <a href="#">Privacy Policy</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+const DAY_SPENDS = {"2": {"total": 1240, "items": [{"cat": "food", "name": "Blinkit groceries", "amt": 1240}]}, "4": {"total": 760, "items": [{"cat": "food", "name": "Chai & snacks", "amt": 260}, {"cat": "travel", "name": "Auto ride", "amt": 500}]}, "5": {"total": 2100, "items": [{"cat": "bills", "name": "Broadband bill", "amt": 2100}]}, "8": {"total": 980, "items": [{"cat": "food", "name": "Swiggy dinner", "amt": 980}]}, "9": {"total": 1450, "items": [{"cat": "shopping", "name": "Books", "amt": 1450}]}, "11": {"total": 320, "items": [{"cat": "other", "name": "Stationery", "amt": 320}]}, "12": {"total": 2150, "items": [{"cat": "bills", "name": "Water bill", "amt": 2150}]}, "14": {"total": 640, "items": [{"cat": "travel", "name": "Metro card", "amt": 640}]}, "16": {"total": 1180, "items": [{"cat": "food", "name": "Groceries", "amt": 1180}]}, "19": {"total": 3020, "items": [{"cat": "food", "name": "Birthday dinner", "amt": 1820}, {"cat": "travel", "name": "Cab home", "amt": 1200}]}, "21": {"total": 4499, "items": [{"cat": "shopping", "name": "Zara jacket", "amt": 4499}]}, "22": {"total": 680, "items": [{"cat": "travel", "name": "Ola ride", "amt": 680}]}, "23": {"total": 2150, "items": [{"cat": "bills", "name": "Electricity bill", "amt": 2150}]}, "24": {"total": 540, "items": [{"cat": "food", "name": "Cafe", "amt": 540}]}, "27": {"total": 680, "items": [{"cat": "travel", "name": "Uber to airport", "amt": 680}]}, "28": {"total": 1240, "items": [{"cat": "food", "name": "Blinkit groceries", "amt": 1240}]}};
+const ICONS = {"food": "<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.7\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M4 12h16\"/><path d=\"M5 12a7 7 0 0 0 14 0\"/><path d=\"M10 4c0 1.1-1 1.6-1 2.6S10 8.5 10 8.5\"/><path d=\"M14 4c0 1.1-1 1.6-1 2.6S14 8.5 14 8.5\"/></svg>", "travel": "<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.7\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M5 12l1.4-4.2A2 2 0 0 1 8.3 6.4h7.4a2 2 0 0 1 1.9 1.4L19 12\"/><path d=\"M4 12h16v4.2a1 1 0 0 1-1 1h-1.4a1 1 0 0 1-1-1V15H7.4v1.2a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1z\"/><path d=\"M7.5 14.5h0\"/><path d=\"M16.5 14.5h0\"/></svg>", "bills": "<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.7\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M6 3.5h12v17l-2-1.2-2 1.2-2-1.2-2 1.2-2-1.2z\"/><path d=\"M9.5 8.5h5\"/><path d=\"M9.5 12h5\"/></svg>", "shopping": "<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.7\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M6 8h12l-1 12.5H7z\"/><path d=\"M9 8V6.2a3 3 0 0 1 6 0V8\"/></svg>", "income": "<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.7\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><rect x=\"3\" y=\"6.5\" width=\"18\" height=\"11\" rx=\"2\"/><circle cx=\"12\" cy=\"12\" r=\"2.4\"/><path d=\"M6.5 9.5h.01\"/><path d=\"M17.5 14.5h.01\"/></svg>", "other": "<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.7\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M4 4.5h7l9 9-7 7-9-9z\"/><circle cx=\"8.4\" cy=\"8.4\" r=\"1.1\"/></svg>"};
+const CATNAMES = {"food": "Food", "travel": "Travel", "bills": "Bills", "shopping": "Shopping", "other": "Other", "income": "Income"};
+
+(function () {
+  const chart = document.getElementById('day-chart');
+  const panel = document.getElementById('day-panel');
+  if (!chart || !panel) return;
+  const bars = Array.from(chart.querySelectorAll('.day-bar'));
+  const rupee = (n) => '\u20b9' + n.toLocaleString('en-IN');
+
+  function render(day) {
+    const rec = DAY_SPENDS[String(day)];
+    let html = '<div class="day-panel-head"><span class="day-panel-title">August ' + day + '</span>';
+    if (rec) {
+      html += '<span class="day-panel-total">' + rec.items.length + ' expense' + (rec.items.length > 1 ? 's' : '') + ' \u00b7 ' + rupee(rec.total) + '</span></div>';
+      rec.items.forEach(function (t) {
+        html += '<div class="day-txn">'
+          + '<span class="cat-badge sm cat-' + t.cat + '" aria-hidden="true">' + ICONS[t.cat] + '</span>'
+          + '<span class="day-txn-name">' + t.name + '<span class="day-txn-cat">' + (CATNAMES[t.cat] || '') + '</span></span>'
+          + '<span class="day-txn-amt">\u2212' + rupee(t.amt) + '</span>'
+          + '</div>';
+      });
+    } else {
+      html += '</div><div class="day-empty">'
+        + '<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M8 12h8"/></svg>'
+        + 'No expenses logged on this day.</div>';
+    }
+    panel.innerHTML = html;
+    bars.forEach(function (b) {
+      const on = Number(b.dataset.day) === day;
+      b.classList.toggle('is-selected', on);
+      b.setAttribute('aria-pressed', on ? 'true' : 'false');
+    });
+  }
+
+  bars.forEach(function (b) {
+    b.addEventListener('click', function () { render(Number(b.dataset.day)); });
+  });
+  render(28); // default to today
+})();
+
+    </script>
+</body>
+</html>
